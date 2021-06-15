@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="/style.css">
+
+
+    <title>Admin</title>
+    <!--<link rel="shortcut icon" type="image/png" href="/src/images/logo.png">-->
+
+</head>
+<body>
+    <div class="outer-container">
+        <div class="inner-container">
+            <h1>EBO</h1>
+            <ul>
+                <li><a href="./admin"><i class="fas fa-users"></i>All Users</a></li>
+                <li><a href="./adminBooking"><i class="fas fa-book"></i>All Bookings</a></li>
+                <li><a href="./addArticle"><i class="fas fa-newspaper"></i>Add Article</a></li>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+            </ul>
+        </div>
+
+        <h1 class="page-header">Booking Table</h1>
+        <table class="tableData">
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Description</th>
+                    <th>Booked Date</th>
+                    <th>Booked User</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tb"></tbody>
+            <script>
+
+                fetch('http://localhost:3002/getAllBookings').then(function (response) {
+                    return response.json();
+                }).then(function (data) {
+                    appendData(data);
+                }).catch(function (err) {
+                    console.log("error:" + err);
+                });
+
+
+                function appendData(data) {
+                    let tb = document.getElementById("tb");
+                    for (let i = 0; i < data.length; i++) {
+                        const dateOnly = new Date(data[i].book_date)
+                        const d = dateOnly.getFullYear() + '-' + dateOnly.getDate() + '-' + (dateOnly.getMonth() + 1);
+
+                        let tr = document.createElement("tr");
+                        tr.innerHTML =
+                            "<tr class='tr'>"
+                            +
+                            "<td class='td'>" + data[i].book_id + "</td>" +
+                            "<td class='td'>" + data[i].descr + "</td>" +
+                            "<td class='td'>" + d + "</td>" +
+                            "<td class='td'>" + data[i].user_id + "</td>" +
+                            `<td class='td'> <a class="btn_delete" href='/deleteAllBookings?book_id=${data[i].book_id}'>cancel</a></td>` +
+                            "</tr>";
+
+                        tb.appendChild(tr);
+                    }
+                }
+            </script>
+        </table>
+
+    </div>
+</body>
+</html>

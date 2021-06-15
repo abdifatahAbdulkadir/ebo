@@ -1,0 +1,222 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    background-color: white;
+}
+
+.outer-container {
+    display: flex;
+    position: relative;
+}
+
+.inner-container {
+    width: 200px;
+    height: 100%;
+    background-color: #2F4050;
+    padding: 30px 0px;
+    position: fixed;
+}
+
+.logged-in-user {
+    width: 140px;
+    height: 30px;
+    color: white;
+    margin-top: 410px;
+    margin-left: 20px;
+    border-radius: 2px;
+}
+
+.outer-container .inner-container h1 {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-bottom: 1px solid #e0e4e8;
+}
+
+.outer-container .inner-container ul li {
+    padding: 15px;
+    border-bottom: 1px solid #bdb8d7;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.outer-container .inner-container ul li a {
+    color: white;
+    display: block;
+}
+
+.outer-container .inner-container ul li a .fas {
+    width: 25px;
+}
+
+/* Button hover effect*/
+.outer-container .inner-container ul li:hover {
+    background-color: #293846;
+    cursor: pointer;
+}
+
+.outer-container .inner-container ul li:hover a {
+    color: #fff;
+}
+
+.ar {
+    width: 100%;
+    margin-left: 250px;
+}
+
+.nr {
+    width: 50%;
+    margin-left: 250px;
+    padding-right: 525px;
+}
+
+
+/* height of the booking form*/
+.ht {
+    margin-top: -230px;
+}
+
+.page-header {
+    position: absolute;
+    left: 30%;
+    margin-top: 3%;
+    font-family: "Helvetica";
+    color: #990066;
+}
+
+/*Admin Tables & my bookings table*/
+
+.tableData {
+    position: absolute;
+    left: 30%;
+    margin-top: 7%;
+    border: 1;
+    border-collapse: collapse;
+}
+
+
+.tableData thead th, tbody tr td {
+    border-bottom: 1px solid #000;
+    padding: 10px;
+}
+
+.tableData tr:hover {
+    background-color: #ddd;
+}
+
+.tableData thead tr th {
+    padding-top: 12px;
+    text-align: left;
+    background-color: #000;
+    color: white;
+}
+
+.btn_delete {
+    box-shadow: 0px 0px 0px 2px #eb2265;
+    background: linear-gradient(to bottom, #eb2265 5%, #eb2265 100%);
+    background-color: #eb2265;
+    border-radius: 10px;
+    border: 1px solid #eb2265;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 14px;
+    padding: 7px 19px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #eb2265;
+}
+
+#articles {
+    margin-left: 250px;
+    margin-top: 5%;
+    position: absolute;
+}
+
+.innerArticles {
+    width: 500px;
+    height: auto;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.info {
+    margin: 24px;
+}
+
+.dateClass {
+    color: grey;
+    margin-top: 10px;
+}
+
+.desc {
+    margin-top: -10px;
+}
+
+.straight_line {
+    margin-top: -22px;
+    margin-left: 15px;
+    margin-right: 15px;
+    opacity: 0.5;
+    border: 1px solid grey;
+}
+
+.anon {
+    font-family: "Helvetica";
+    color: #990066;
+}
+
+.btn-news {
+    box-shadow: 0px 0px 0px 2px #558ee9;
+    background: linear-gradient(to bottom, #558ee9 5%, #558ee9 100%);
+    background-color: #558ee9;
+    border-radius: 10px;
+    border: 1px solid #558ee9;
+    display: inline-block;
+    cursor: pointer;
+    color: #558ee9;
+    font-family: Arial;
+    font-size: 14px;
+    padding: 7px 19px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #558ee9;
+}
+
+.btn-news a {
+    color: white;
+    text-decoration: none;
+}
+
+/* NewArticle.html form adjusting*/
+.n-article {
+    margin-left: 250px;
+    margin-top: 20px;
+}
+
+.err {
+    width: 28%;
+    color: red;
+}
+
+/* About Page */
+.about-us {
+    text-align: center;
+    margin-top: 100px;
+    position: relative;
+}
+
+.card-cntr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

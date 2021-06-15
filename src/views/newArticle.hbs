@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <title>New Article</title>
+    <!--<link rel="shortcut icon" type="image/png" href="/src/images/logo.png">-->
+</head>
+<body>
+
+    <div class="outer-container">
+        <div class="inner-container">
+            <h1>EBO</h1>
+            <ul>
+                <li><a href="./admin"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="./adminBooking"><i class="fas fa-book"></i>All Bookings</a></li>
+                <li><a href="./addArticle"><i class="fas fa-newspaper"></i>Add Article</a></li>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+            </ul>
+
+        </div>
+
+        <form action="/newArticle" method="POST" class="n-article">
+            <div class="form-group">
+                <label for="title">Title </label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" rows="3" name="description" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Article</button>
+            <button type="submit" class="btn btn-secondary"> <a href="./admin"> Go back</a> </button>
+        </form>
+
+    </div>
+</body>
+</html>
