@@ -4,8 +4,8 @@ const path = require("path");
 const session = require('express-session');
 require('dotenv').config();
 const morgan = require("morgan");
-const apiRouter = require("./route");
-const {db, connection} = require("./dataBase.js");
+const apiRouter = require("./src/route");
+const {db, connection} = require("./src/dataBase.js");
 let user_id; // to identify the logged user
 
 

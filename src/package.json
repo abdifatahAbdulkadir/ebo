@@ -18,10 +18,10 @@
   "name": "mar",
   "description": "Booking system",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "../server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "node server.js"
+    "start": "node ../server.js",
+    "test": "node ../server.js"
   },
   "repository": {
     "type": "git",
