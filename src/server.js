@@ -152,10 +152,8 @@ app.post("/index", (req, res) => {
         if (result.rows.length > 0) {
 
           result.rows.forEach(function (row) {
-            console.debug('userrrrrrrrrrr ' + row.user_id)
             if (row.role === "admin") {
               user_id = row.user_id;
-              console.log('useeeeeeeeeeeeeer ', user_id)
               req.session.loggedin = true;
               req.session.email = email;
               req.session.name = row.name
@@ -245,8 +243,6 @@ app.post("/newArticle", (req, res) => {
 });
 
 app.get("/index", isLoggedIn, function (req, res) {
-
-  //res.send("Welcome back, " + req.session.email + "!");
   return res.status(200).render("index");
 
 });
