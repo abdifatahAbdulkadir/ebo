@@ -39,7 +39,7 @@
             <tbody id="tb"></tbody>
             <script>
 
-                fetch('http://localhost:3002/getAllBookings').then(function (response) {
+                fetch('https://mebo.herokuapp.com/getAllBookings').then(function (response) {
                     return response.json();
                 }).then(function (data) {
                     appendData(data);

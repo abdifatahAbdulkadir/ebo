@@ -45,7 +45,7 @@
         </table>
 
         <script>
-            fetch('http://localhost:3002/booked').then(function (response) {
+            fetch('https://mebo.herokuapp.com/booked').then(function (response) {
                 return response.json();
             }).then(function (data) {
                 appendData(data);
