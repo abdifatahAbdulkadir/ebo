@@ -141,33 +141,36 @@ app.post("/index", (req, res) => {
     });
   } else {
     console.debug('about to query')
-      connection.query(`SELECT * FROM users WHERE email= $1 AND password= $2`, [email, password], function (err, result) {
-        console.debug('after query')
-        if (err) {
-          console.log(err);
-          throw err;
-        }
-  console.debug('before If ' + result.rows.user_id)
-        if (result.rows.length > 0) {
+    connection.query(`SELECT *
+                      FROM users
+                      WHERE email = $1
+                        AND password = $2`, [email, password], function (err, result) {
+      console.debug('after query')
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+      console.debug('before If ' + result.rows.user_id)
+      if (result.rows.length > 0) {
 
-          result.rows.forEach(function (row) {
-            if (row.role === "admin") {
-              user_id = row.user_id;
-              req.session.loggedin = true;
-              req.session.email = email;
-              req.session.name = row.name
-              return res.status(200).render("adminPage");
-            } else if (row.role === "user") {
-              user_id = row.user_id;
-              req.session.loggedin = true;
-              req.session.email = email;
-              req.session.email = row.name
-              return res.status(200).render("index");
-            }
-          });
+        result.rows.forEach(function (row) {
+          if (row.role === "admin") {
+            user_id = row.user_id;
+            req.session.loggedin = true;
+            req.session.email = email;
+            req.session.name = row.name
+            return res.status(200).render("adminPage");
+          } else if (row.role === "user") {
+            user_id = row.user_id;
+            req.session.loggedin = true;
+            req.session.email = email;
+            req.session.email = row.name
+            return res.status(200).render("index");
+          }
+        });
 
-        }
-      });
+      }
+    });
 
   }
 
@@ -207,7 +210,8 @@ app.post("/bookingReperation", (req, res) => {
           });
         } else {
           if (!(descr === "" && book_date === "")) {
-            connection.query(`INSERT INTO book (descr, book_date, address, user_id) VALUES ($1, $2, $3, $4)`, [descr, book_date, address, user_id], (err, result) => {
+            connection.query(`INSERT INTO book (descr, book_date, address, user_id)
+                              VALUES ($1, $2, $3, $4)`, [descr, book_date, address, user_id], (err, result) => {
               if (err) {
                 console.log(err);
               } else {
@@ -230,7 +234,8 @@ app.post("/newArticle", (req, res) => {
   const date = new Date();
 
   if (!(title === "" && description === "")) {
-    connection.query(`INSERT INTO news (title, description, date) VALUES ($1, $2, $3)`, [title, description, date], (err, result) => {
+    connection.query(`INSERT INTO news (title, description, date)
+                      VALUES ($1, $2, $3)`, [title, description, date], (err, result) => {
       if (err) {
         console.log(err);
       } else {
