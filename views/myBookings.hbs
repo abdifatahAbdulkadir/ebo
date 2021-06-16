@@ -57,7 +57,7 @@
             for (let i = 0; i < data.length; i++) {
                 let tr = document.createElement("tr");
                 const dateOnly = new Date(data[i].book_date)
-                const d = dateOnly.getFullYear() + '-' + dateOnly.getDate() + '-' + (dateOnly.getMonth() + 1);
+                const d = dateOnly.getFullYear() + ' - ' + dateOnly.getDate() + ' - ' + (dateOnly.getMonth() + 1);
 
                 tr.innerHTML =
                         "<tr class='tr'>" +
