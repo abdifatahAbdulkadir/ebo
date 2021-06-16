@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
@@ -17,51 +16,50 @@
 </head>
 
 <body>
-    <div class="outer-container">
-        <div class="inner-container">
-            <h1>EBO</h1>
-            <ul>
-                <li><a href="./index"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="./bookingReperation"><i class="fas fa-plus-square"></i>Book</a></li>
-                <li><a href="./myBookings"><i class="fas fa-book"></i>My Bookings</a></li>
-                <li><a href="./about"><i class="fas fa-address-card"></i>About</a></li>
-                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-            </ul>
-        </div>
+<div class="outer-container">
+    <div class="inner-container">
+        <h1>EBO</h1>
+        <ul>
+            <li><a href="./index"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="./bookingReperation"><i class="fas fa-plus-square"></i>Book</a></li>
+            <li><a href="./myBookings"><i class="fas fa-book"></i>My Bookings</a></li>
+            <li><a href="./about"><i class="fas fa-address-card"></i>About</a></li>
+            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+        </ul>
+    </div>
 
 
-        <h1 class="page-header">My Bookings</h1>
-        <table class="tableData">
-            <thead>
-                <tr>
-                    <th>Book ID</th>
-                    <th>Description</th>
-                    <th>Booked Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="tb"></tbody>
+    <h1 class="page-header">My Bookings</h1>
+    <table class="tableData">
+        <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Description</th>
+            <th>Booked Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="tb"></tbody>
 
-        </table>
+    </table>
 
-        <script>
-            fetch('https://mar-2.herokuapp.com/booked').then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                appendData(data);
-            }).catch(function (err) {
-                console.log("error:" + err);
-            });
+    <script>
+        fetch('https://mar-2.herokuapp.com/booked').then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            appendData(data);
+        }).catch(function (err) {
+            console.log("error:" + err);
+        });
 
-            function appendData(data) {
+        function appendData(data) {
+            let tbodyContainer = document.getElementById("tb");
+            for (let i = 0; i < data.length; i++) {
+                let tr = document.createElement("tr");
+                const dateOnly = new Date(data[i].book_date)
+                const d = dateOnly.getFullYear() + '-' + dateOnly.getDate() + '-' + (dateOnly.getMonth() + 1);
 
-                let tbodyContainer = document.getElementById("tb");
-                for (let i = 0; i < data.length; i++) {
-                    let tr = document.createElement("tr");
-                    const dateOnly = new Date(data[i].book_date)
-                    const d = dateOnly.getFullYear() + '-' + dateOnly.getDate() + '-' + (dateOnly.getMonth() + 1);
-
-                    tr.innerHTML =
+                tr.innerHTML =
                         "<tr class='tr'>" +
                         "<td class='td'>" + data[i].address + "</td>" +
                         "<td class='td'>" + data[i].descr + "</td>" +
@@ -70,13 +68,13 @@
 
                         "</tr>";
 
-                    tbodyContainer.appendChild(tr);
-                }
+                tbodyContainer.appendChild(tr);
             }
-        </script>
+        }
+    </script>
 
 
-    </div>
+</div>
 </body>
 </html>
 
