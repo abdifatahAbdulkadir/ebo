@@ -4,14 +4,13 @@ const path = require("path");
 const session = require('express-session');
 require('dotenv').config();
 const morgan = require("morgan");
-const apiRouter = require("./src/route");
-const {db, connection} = require("./src/dataBase.js");
+const apiRouter = require("./route");
+const {db, connection} = require("./dataBase.js");
 let user_id; // to identify the logged user
 
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/src/views'));
-app.use(express.static(__dirname + '/MAR'));
+app.use(express.static(__dirname + '/src/views/'));
 
 
 app.use(morgan("short"));
@@ -48,7 +47,7 @@ app.get("/", isLoggedIn, function (req, res) {
 
 //gets the path to login file on the URL field --> localhost:2000/
 app.get('/login', function (req, res) {
-  res.render("login");
+  res.render('login');
 });
 
 app.get('/newArticle', isLoggedIn, function (req, res) {
