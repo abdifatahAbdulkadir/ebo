@@ -13,47 +13,47 @@
 
 </head>
 <body>
-    <div class="outer-container">
-        <div class="inner-container">
-            <h1>EBO</h1>
-            <ul>
-                <li><a href="./admin"><i class="fas fa-users"></i>All Users</a></li>
-                <li><a href="./adminBooking"><i class="fas fa-book"></i>All Bookings</a></li>
-                <li><a href="./addArticle"><i class="fas fa-newspaper"></i>Add Article</a></li>
-                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-            </ul>
+<div class="outer-container">
+    <div class="inner-container">
+        <h1>EBO</h1>
+        <ul>
+            <li><a href="./admin"><i class="fas fa-users"></i>All Users</a></li>
+            <li><a href="./adminBooking"><i class="fas fa-book"></i>All Bookings</a></li>
+            <li><a href="./addArticle"><i class="fas fa-newspaper"></i>Add Article</a></li>
+            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+        </ul>
 
-        </div>
+    </div>
 
 
-        <h1 class="page-header">User Table</h1>
-        <table class="tableData">
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Name</th>
-                    <th>E-mail</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="tb"></tbody>
-            <script>
+    <h1 class="page-header">User Table</h1>
+    <table class="tableData">
+        <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+        <script>
 
-                fetch('https://mar-2.herokuapp.com/allUsers').then(function (response) {
-                    return response.json();
-                }).then(function (data) {
-                    appendData(data);
-                }).catch(function (err) {
-                    console.log("error:" + err);
-                });
+            fetch('https://mar-2.herokuapp.com/allUsers').then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                appendData(data);
+            }).catch(function (err) {
+                console.log("error:" + err);
+            });
 
-                function appendData(data) {
-                    let tb = document.getElementById("tb");
-                    for (let i = 0; i < data.length; i++) {
+            function appendData(data) {
+                let tb = document.getElementById("tb");
+                for (let i = 0; i < data.length; i++) {
 
-                        let tr = document.createElement("tr");
-                        tr.innerHTML =
+                    let tr = document.createElement("tr");
+                    tr.innerHTML =
                             "<tr class='tr'>"
                             +
                             "<td class='td'>" + data[i].user_id + "</td>" +
@@ -63,12 +63,12 @@
                             `<td class='td'> <a class="btn_delete" href='/deleteUser?user_id=${data[i].user_id}'>Delete</a></td>` +
                             "</tr>";
 
-                        tb.appendChild(tr);
-                    }
+                    tb.appendChild(tr);
                 }
-            </script>
-        </table>
+            }
+        </script>
+    </table>
 
-    </div>
+</div>
 </body>
 </html>

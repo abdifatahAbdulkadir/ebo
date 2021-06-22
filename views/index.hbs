@@ -14,47 +14,48 @@
 
 </head>
 <body>
-    <div class="outer-container">
-        <div class="inner-container">
-            <h1>EBO</h1>
-            <ul>
-                <li><a href="./index"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="./bookingReperation"><i class="fas fa-plus-square"></i>Book</a></li>
-                <li><a href="./myBookings"><i class="fas fa-book"></i>My Bookings</a></li>
-                <li><a href="./about"><i class="fas fa-address-card"></i>About</a></li>
-                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-            </ul>
-        </div>
+<div class="outer-container">
+    <div class="inner-container">
+        <h1>EBO</h1>
+        <ul>
+            <li><a href="./index"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="./bookingReperation"><i class="fas fa-plus-square"></i>Book</a></li>
+            <li><a href="./myBookings"><i class="fas fa-book"></i>My Bookings</a></li>
+            <li><a href="./about"><i class="fas fa-address-card"></i>About</a></li>
+            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+        </ul>
     </div>
+</div>
 
-    <div id="articles">
-        <h1 class="anon">Announcements</h1>
-    </div>
+<div id="articles">
+    <h1 class="anon">Announcements</h1>
+</div>
 
-    <script>
-        fetch('https://mar-2.herokuapp.com/news').then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            appendData(data);
-        }).catch(function (err) {
-            console.log("error:" + err);
-        });
-        function appendData(data) {
-            let mainContainer = document.getElementById("articles");
-            for (let i = 0; i < data.length; i++) {
-                let div = document.createElement("div");
-                const dateOnly = new Date(data[i].date)
-                const d = dateOnly.getFullYear() + '-' + dateOnly.getDate() + '-' + (dateOnly.getMonth() + 1) + '  ' + dateOnly.getHours() + ':' + dateOnly.getMinutes();
-                div.innerHTML =
+<script>
+    fetch('https://mar-2.herokuapp.com/news').then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        appendData(data);
+    }).catch(function (err) {
+        console.log("error:" + err);
+    });
+
+    function appendData(data) {
+        let mainContainer = document.getElementById("articles");
+        for (let i = 0; i < data.length; i++) {
+            let div = document.createElement("div");
+            const dateOnly = new Date(data[i].date)
+            const d = dateOnly.getFullYear() + '-' + dateOnly.getDate() + '-' + (dateOnly.getMonth() + 1) + '  ' + dateOnly.getHours() + ':' + dateOnly.getMinutes();
+            div.innerHTML =
                     "<div class= 'innerArticles' " +
                     "<h1  class='title'> <strong class='info'>" + data[i].title + "</strong> </h1>" + " <br> " +
                     "<h5  class='dateClass info'>" + d + "</h5>" + " <br> " +
                     "<div class='straight_line'></div>" + "<br>" +
                     "<p   class='desc info'>" + data[i].description + "</p>" + "</div> <br>"
-                mainContainer.appendChild(div);
-            }
+            mainContainer.appendChild(div);
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>

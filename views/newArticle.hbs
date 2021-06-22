@@ -14,32 +14,32 @@
 </head>
 <body>
 
-    <div class="outer-container">
-        <div class="inner-container">
-            <h1>EBO</h1>
-            <ul>
-                <li><a href="./admin"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="./adminBooking"><i class="fas fa-book"></i>All Bookings</a></li>
-                <li><a href="./addArticle"><i class="fas fa-newspaper"></i>Add Article</a></li>
-                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-            </ul>
-
-        </div>
-
-        <form action="/newArticle" method="POST" class="n-article">
-            <div class="form-group">
-                <label for="title">Title </label>
-                <input type="text" class="form-control" id="title" name="title" required>
-            </div>
-
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" rows="3" name="description" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Save Article</button>
-            <button type="submit" class="btn btn-secondary"> <a href="./admin"> Go back</a> </button>
-        </form>
+<div class="outer-container">
+    <div class="inner-container">
+        <h1>EBO</h1>
+        <ul>
+            <li><a href="./admin"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="./adminBooking"><i class="fas fa-book"></i>All Bookings</a></li>
+            <li><a href="./addArticle"><i class="fas fa-newspaper"></i>Add Article</a></li>
+            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+        </ul>
 
     </div>
+
+    <form action="/newArticle" method="POST" class="n-article">
+        <div class="form-group">
+            <label for="title">Title </label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" rows="3" name="description" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Article</button>
+        <button type="submit" class="btn btn-secondary"><a href="./admin"> Go back</a></button>
+    </form>
+
+</div>
 </body>
 </html>
