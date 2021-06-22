@@ -86,7 +86,7 @@ app.get('/bookingReperation', isLoggedIn, function (req, res) {
 //sign up
 app.post("/register", (req, res) => {
   const {name, email, password, passwordConfirm} = req.body;
-  connection.query("SELECT email FROM public.users WHERE email = $1", [email], (err, result) => {
+  connection.query("SELECT email FROM users WHERE email = ?", [email], (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -110,10 +110,10 @@ app.post("/register", (req, res) => {
         message: "Field is Empty"
       });
     } else {
-      let role = "user";
+      console.log(process.env.userReg)
+      let role = process.env.userReg;
       if (!(name === "" && email === "" && password === "" && passwordConfirm === "")) {
-        connection.query(`INSERT INTO public.users (name, email, password, role)
-                          VALUES ($1, $2, $3, $4)`, [name, email, password, role], (err, result) => {
+        connection.query("INSERT INTO users set ?", {name: name, email: email, password: password, role}, (err,result) => {
           if (err) {
             console.log(err);
           } else {
@@ -141,19 +141,16 @@ app.post("/index", (req, res) => {
     });
   } else {
     console.debug('about to query')
-    connection.query(`SELECT *
-                      FROM users
-                      WHERE email = $1
-                        AND password = $2`, [email, password], function (err, result) {
+    connection.query("SELECT * FROM users WHERE email=? AND password=?", [email, password], function (err, result) {
       console.debug('after query')
       if (err) {
         console.log(err);
         throw err;
       }
-      console.debug('before If ' + result.rows.user_id)
-      if (result.rows.length > 0) {
+      console.debug('before If ' + result.user_id)
+      if (result.length > 0) {
 
-        result.rows.forEach(function (row) {
+        result.forEach(function (row) {
           if (row.role === "admin") {
             user_id = row.user_id;
             req.session.loggedin = true;
@@ -181,11 +178,12 @@ app.get('/logout', function (req, res) {
   if (req.session) {
     req.session.email = null
     res.clearCookie('email')
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     req.session.destroy(err => {
       console.log(err);
     });
     //es.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+
   }
 
   res.redirect("login");
@@ -196,11 +194,11 @@ app.post("/bookingReperation", (req, res) => {
   const {book_date, address, descr} = req.body;
   if (req.session.loggedin) {
 
-    connection.query("SELECT book_date FROM book WHERE book_date = $1", [book_date], function (err, result) {
+    connection.query("SELECT book_date FROM book WHERE book_date = ?", [book_date], function (err, result) {
       if (err) {
         console.log(err);
       } else {
-        if (result.rows.length > 0) {
+        if (result.length > 0) {
           return res.render("bookingReperation", {
             message: "Date is already in use"
           });
@@ -210,8 +208,7 @@ app.post("/bookingReperation", (req, res) => {
           });
         } else {
           if (!(descr === "" && book_date === "")) {
-            connection.query(`INSERT INTO book (descr, book_date, address, user_id)
-                              VALUES ($1, $2, $3, $4)`, [descr, book_date, address, user_id], (err, result) => {
+            connection.query("INSERT INTO book set ?", { descr: descr, book_date: book_date, address: address, user_id }, (err, result) => {
               if (err) {
                 console.log(err);
               } else {
@@ -234,8 +231,7 @@ app.post("/newArticle", (req, res) => {
   const date = new Date();
 
   if (!(title === "" && description === "")) {
-    connection.query(`INSERT INTO news (title, description, date)
-                      VALUES ($1, $2, $3)`, [title, description, date], (err, result) => {
+    connection.query("INSERT INTO news set ?", {title: title, description: description, date}, (err,result) => {
       if (err) {
         console.log(err);
       } else {
@@ -262,8 +258,8 @@ app.get("/booked", (req, res, next) => {
       if (err) {
         console.log(err);
       } else {
-        if (result.rows.length > 0) {
-          res.json(result.rows);
+        if (result.length > 0) {
+          res.json(result);
         }
       }
     });

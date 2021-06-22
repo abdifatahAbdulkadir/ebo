@@ -33,7 +33,7 @@
     <table class="tableData">
         <thead>
         <tr>
-            <th>Book ID</th>
+            <th>Address</th>
             <th>Description</th>
             <th>Booked Date</th>
             <th>Action</th>
@@ -47,16 +47,17 @@
         fetch('https://mar-2.herokuapp.com/booked').then(function (response) {
             return response.json();
         }).then(function (data) {
+            console.log(data);
             appendData(data);
         }).catch(function (err) {
-            console.log("error:" + err);
+            console.log("error: " + err);
         });
 
         function appendData(data) {
             let tbodyContainer = document.getElementById("tb");
             for (let i = 0; i < data.length; i++) {
                 let tr = document.createElement("tr");
-                const dateOnly = new Date(data[i].book_date)
+                const dateOnly = new Date(data[i].book_date);
                 const d = dateOnly.getFullYear() + ' - ' + dateOnly.getDate() + ' - ' + (dateOnly.getMonth() + 1);
 
                 tr.innerHTML =
@@ -64,7 +65,7 @@
                         "<td class='td'>" + data[i].address + "</td>" +
                         "<td class='td'>" + data[i].descr + "</td>" +
                         "<td class='td'>" + d + "</td>" +
-                        `<td class"'td'> <a class="btn_delete" href='/delete?book_id=${data[i].book_id}'>cancel</a></th>` +
+                        `<td class" 'td'> <a class="btn_delete" href='/delete?book_id=${data[i].book_id}'>cancel</a></td>` +
 
                         "</tr>";
 
