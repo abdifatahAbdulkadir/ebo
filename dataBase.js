@@ -1,17 +1,14 @@
 //const mysql = require("mysql");
-const {Pool} = require('pg')
+const mysql = require('mysql')
 
 // mysql.createPool -> creates a connection with a connectionLimit of '10'
-const connection = new Pool({
+const connection = mysql.createPool({
   host: process.env.HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
   connectionLimit: process.env.CONN_LIMIT,
-  ssl: {
-    rejectUnauthorized: false
-  }
 });
 
 let db = {};
@@ -19,11 +16,11 @@ let db = {};
 db.news = () => {
   return new Promise((resolve, reject) => {
     connection.query(`SELECT *
-                      FROM public.news;`, function (err, results) {
+                      FROM news;`, function (err, results) {
       if (err) {
         reject(err);
       } else {
-        resolve(results.rows);
+        resolve(results);
       }
     });
   });
@@ -36,7 +33,7 @@ db.getAllUser = () => {
       if (err) {
         reject(err);
       } else {
-        resolve(results.rows);
+        resolve(results);
       }
     });
   });
@@ -48,7 +45,7 @@ db.deleteUser = (user_id) => {
       if (err) {
         reject(err);
       } else {
-        resolve(results.rows);
+        resolve(results);
       }
     });
   });
@@ -62,7 +59,7 @@ db.getAllBookings = () => {
       if (err) {
         reject(err);
       } else {
-        resolve(results.rows);
+        resolve(results);
       }
     });
   });
@@ -75,7 +72,7 @@ db.deleteAllBookings = (book_id) => {
       if (err) {
         reject(err);
       } else {
-        resolve(results.rows);
+        resolve(results);
       }
     });
   });
