@@ -292,6 +292,7 @@ function isLoggedIn(req, res, next) {
 }
 
 //start server
-app.listen(process.env.PORT || '3002', function () {
-  console.log("running server on port 3002");
+const pNum = 8080;
+app.listen(process.env.PORT || pNum, function () {
+  console.log(`running server on port ${pNum}`);
 });
