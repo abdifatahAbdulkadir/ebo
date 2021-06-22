@@ -292,6 +292,6 @@ function isLoggedIn(req, res, next) {
 }
 
 //start server
-app.listen(process.env.PORT || 3002, function () {
+app.listen(process.env.PORT || '3002', function () {
   console.log("running server on port 3002");
 });
