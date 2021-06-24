@@ -1,5 +1,4 @@
-//const mysql = require("mysql");
-const mysql = require('mysql')
+const mysql = require("mysql");
 
 // mysql.createPool -> creates a connection with a connectionLimit of '10'
 const connection = mysql.createPool({
@@ -10,6 +9,7 @@ const connection = mysql.createPool({
   port: process.env.DB_PORT,
   connectionLimit: process.env.CONN_LIMIT,
 });
+
 
 let db = {};
 
