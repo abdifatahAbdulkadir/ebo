@@ -25,7 +25,7 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3002/index");
+  res.setHeader("Access-Control-Allow-Origin", "https://mar-2.herokuapp.com/");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept",
@@ -155,13 +155,11 @@ app.post("/index", (req, res) => {
             user_id = row.user_id;
             req.session.loggedin = true;
             req.session.email = email;
-            req.session.name = row.name
             return res.status(200).render("adminPage");
           } else if (row.role === "user") {
             user_id = row.user_id;
             req.session.loggedin = true;
             req.session.email = email;
-            req.session.email = row.name
             return res.status(200).render("index");
           }
         });

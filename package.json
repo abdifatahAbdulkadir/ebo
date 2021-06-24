@@ -12,10 +12,9 @@
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
-    "pg": "^8.6.0",
     "req-flash": "^0.0.3"
   },
-  "name": "mar",
+  "name": "ebo",
   "description": "Booking system",
   "version": "1.0.0",
   "main": "server.js",
@@ -25,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abdifatahAbdulkadir/MAR.git"
+    "url": "https://github.com/abdifatahAbdulkadir/ebo.git"
   },
-  "author": "Abdifatah, Mohamed, Robert",
+  "author": "Abdifatah",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/abdifatahAbdulkadir/MAR/issues"
+    "url": "https://github.com/abdifatahAbdulkadir/ebo/issues"
   },
-  "homepage": "https://github.com/abdifatahAbdulkadir/MAR#readme"
+  "homepage": "https://github.com/abdifatahAbdulkadir/ebo#readme"
 }
